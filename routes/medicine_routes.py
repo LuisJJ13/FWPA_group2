@@ -139,10 +139,16 @@ def generate_ai_info(medicine_name):
 
 @medicine_bp.route('/api/profile/add-medicine', methods=['POST'])
 def add_medicine_to_profile():
-    if 'user_id' not in session:
+    #Check for 'email' not 'user_id'
+    if 'email' not in session:
         return jsonify({'success': False, 'error': 'Please login first'}), 401
     
+    # Get the email from session
+    user_email = session.get('email')
     medicine_name = request.form.get('medicine_name', '').strip().lower()
+    
+    if not medicine_name:
+        return jsonify({'success': False, 'error': 'Medicine name required'}), 400
     
     # Check if medicine exists in MongoDB
     medicine_data = medicine_model.get_medicine_by_name(medicine_name)
@@ -150,18 +156,26 @@ def add_medicine_to_profile():
     if not medicine_data:
         return jsonify({'success': False, 'error': 'Medicine not found'}), 404
     
-    if 'saved_medicines' not in session:
-        session['saved_medicines'] = []
+    #  Use the DB saved_meds model instead of session
+    from models.user_model import DB
+    db = DB()
+    saved_meds_model = db.saved_meds
     
-    if medicine_name in session['saved_medicines']:
-        return jsonify({'success': False, 'message': 'Already saved'}), 400
+    # Check if already saved (prevent duplicates)
+    existing_meds = saved_meds_model.get_meds_by_email(user_email)
+    already_saved = any(med.get('medication') == medicine_name for med in existing_meds)
     
-    session['saved_medicines'].append(medicine_name)
-    session.modified = True
+    if already_saved:
+        db.close()
+        return jsonify({'success': False, 'message': 'Already saved to profile'}), 400
+    
+    #  Save to database
+    saved_meds_model.save_medication(user_email, medicine_name)
+    db.close()
     
     return jsonify({
         'success': True,
-        'message': f'{medicine_data["name"]} added to profile'
+        'message': f'{medicine_data["name"]} added to profile!'
     })
 
 # ============================================

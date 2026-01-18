@@ -61,16 +61,25 @@ class LoginModel:
 class SavedMedsModel:
     def __init__(self, collection):
         self.collection = collection
+        self.collection.create_index[("email", 1)("medication", 1)], unique=True
 
     def save_medication(self, email, medication):
         email = email.strip().lower()
         entry = {"email": email, "medication": medication}
-        return self.collection.insert_one(entry).inserted_id
+        try:
+            return self.collection.insert_one(entry).inserted_id
+        except Exception as e:
+            print(f"Error saving medication: {e}")
+            return None
     def get_meds_by_email(self, email):
         """Fetch all saved medicines for a given user email"""
         email = email.strip().lower()
         return list(self.collection.find({"email": email}))
 
+    def remove_medication(self, email, medication):
+        email = email.strip().lower()
+        result = self.collection.delete_one({"email": email, "medication": medication})
+        return result.deleted_count > 0
 
 # ------------------------
 # SCHEDULED MEDS MODEL
