@@ -61,7 +61,7 @@ class LoginModel:
 class SavedMedsModel:
     def __init__(self, collection):
         self.collection = collection
-        self.collection.create_index([("email", 1)("medication", 1)], unique=True)
+        self.collection.create_index([("email", 1),("medication", 1)], unique=True)
 
     def save_medication(self, email, medication):
         email = email.strip().lower()
