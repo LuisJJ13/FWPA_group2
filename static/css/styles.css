@@ -1,6 +1,8 @@
 /* ============================= */
 /* Base Reset and Font */
 /* ============================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,31 +11,53 @@
 }
 
 body {
-  background-color: #f6f8f3;
+  background: linear-gradient(135deg, #f6f8f3 0%, #e8f4df 100%);
   color: #222;
   min-height: 100vh;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================= */
-/* Colors and Variables */
+/* Your Original Color Palette - Modernized */
 /* ============================= */
 :root {
+  /* Your green palette */
   --green-dark: #90A955;
   --green-mid: #ADC178;
   --green-light: #B3D89C;
+  --green-bg: #e6f1d9;
+  
+  /* Alert colors */
   --red-alert: #e74c3c;
+  --red-light: #ffe5e5;
+  
+  /* Primary action color */
   --primary: #007BFF;
   --primary-dark: #0056b3;
+  --primary-light: #cce5ff;
+  
+  /* Neutrals */
   --input-bg: #fafafa;
   --input-border: #d1d5db;
-  --shadow-light: rgba(0, 0, 0, 0.06);
-  --shadow-dark: rgba(0, 0, 0, 0.15);
-  --gradient-bg: linear-gradient(145deg, #e8f4df, #cde5b7);
+  --text-dark: #2c3e50;
+  --text-muted: #64748b;
+  
+  /* Modern shadows - lighter than before */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 }
 
 /* ============================= */
-/* Logo & Navbar Buttons */
+/* Logo & Navbar - YOUR COLORS */
 /* ============================= */
 .logo a {
   display: flex;
@@ -45,7 +69,7 @@ body {
 }
 
 .logo img {
-  width: 48px; /* 20% smaller */
+  width: 48px;
   margin-right: 8px;
   transition: transform 0.3s ease;
 }
@@ -58,16 +82,16 @@ body {
   background-color: var(--green-dark);
   color: white;
   padding: 0.5rem 1.2rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 4px 12px var(--shadow-dark);
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .login-btn:hover {
   background-color: var(--green-mid);
-  box-shadow: 0 6px 16px var(--shadow-dark);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
@@ -86,22 +110,23 @@ body {
 .forgot-password-container,
 .set-new-password-container,
 .form_container form {
-  background: var(--gradient-bg);
-  border-radius: 16px;
-  box-shadow: 0 12px 30px var(--shadow-dark);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ea 100%);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 24px rgba(144, 169, 85, 0.15);
   padding: 50px 60px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 2px solid var(--green-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .forgot-password-container:hover,
 .set-new-password-container:hover,
 .form_container form:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 35px var(--shadow-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(144, 169, 85, 0.25);
 }
 
 /* ============================= */
-/* Form Buttons */
+/* Form Buttons - YOUR BLUE */
 /* ============================= */
 .button_set,
 input[type="submit"] {
@@ -109,20 +134,20 @@ input[type="submit"] {
   width: 100%;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   border: none;
   color: #fff;
-  background: linear-gradient(145deg, var(--primary), var(--primary-dark));
-  box-shadow: 0 6px 18px var(--shadow-light);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   padding: 14px 0;
 }
 
 .button_set:hover,
 input[type="submit"]:hover {
-  background: linear-gradient(145deg, var(--primary-dark), var(--primary));
-  box-shadow: 0 8px 22px var(--shadow-dark);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
@@ -132,7 +157,7 @@ input[type="submit"]:hover {
 label {
   margin-top: 15px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-dark);
 }
 
 input,
@@ -145,25 +170,28 @@ textarea,
   padding: 12px 14px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid var(--input-border);
-  border-radius: 10px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-md);
   font-size: 15px;
   background-color: var(--input-bg);
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: var(--green-mid);
   background-color: #fff;
-  box-shadow: 0 0 12px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(173, 193, 120, 0.15);
+}
+
+input::placeholder {
+  color: var(--text-muted);
 }
 
 /* ============================= */
-/* Profile Page */
+/* Profile Page - YOUR GREEN THEME */
 /* ============================= */
 .profile-top {
   display: grid;
@@ -176,45 +204,66 @@ textarea:focus {
 .saved-medicines,
 .Warnings,
 .Calendar {
-  border: 1px solid #cbd5e1; /* modern soft border */
-  border-radius: 16px;
+  border: 2px solid var(--green-light);
+  border-radius: var(--radius-lg);
   padding: 25px;
   background-color: #fff;
-  border-top: 6px solid var(--green-mid);
-  box-shadow: 0 8px 25px var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(144, 169, 85, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .user-information-section:hover,
 .saved-medicines:hover,
 .Warnings:hover,
 .Calendar:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px var(--shadow-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(144, 169, 85, 0.25);
+}
+
+/* Green border accent for user info */
+.user-information-section {
+  border-top: 5px solid var(--green-mid);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ea 100%);
+}
+
+/* Green background for saved medicines */
+.saved-medicines {
+  border-top: 5px solid var(--green-dark);
+  background: linear-gradient(135deg, #ffffff 0%, var(--green-bg) 100%);
+}
+
+/* Red background for warnings */
+.Warnings {
+  border-top: 5px solid var(--red-alert);
+  border: 2px solid rgba(231, 76, 60, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, var(--red-light) 100%);
+}
+
+/* Calendar styling */
+.Calendar {
+  background: linear-gradient(135deg, #B3D89C 0%, #ADC178 100%);
+  margin-top: 60px;
+  border-top: 5px solid var(--green-dark);
+  color: #fff;
+}
+
+.Calendar h3 {
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.Calendar ul {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .profile_icon img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid #aaa;
+  border: 3px solid var(--green-mid);
   object-fit: cover;
   margin-bottom: 15px;
-}
-
-.saved-medicines {
-  border-color: var(--green-mid);
-  background-color: #e6f1d9;
-}
-
-.Warnings {
-  border-color: var(--red-alert);
-  background-color: #ffe5e5;
-}
-
-.Calendar {
-  background-color: #f9f5e8;
-  margin-top: 60px; /* extra spacing above */
+  box-shadow: var(--shadow-sm);
 }
 
 .user-information-section h3,
@@ -223,7 +272,8 @@ textarea:focus {
 .Calendar h3 {
   margin-bottom: 15px;
   font-size: 1.3rem;
-  color: #2c3e50;
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
 .user-information-section ul,
@@ -241,13 +291,227 @@ textarea:focus {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #f3f6f3;
-  color: #555;
+  background: linear-gradient(135deg, #f0f7ea 0%, #e8f4df 100%);
+  color: var(--text-dark);
   font-size: 0.9rem;
+  border-top: 2px solid var(--green-light);
 }
 
 /* ============================= */
-/* Responsive Adjustments */
+/* Calendar Styling - Enhanced */
+/* ============================= */
+.calendar-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ea 100%);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(144, 169, 85, 0.15);
+  border: 2px solid var(--green-light);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--green-light);
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.calendar-nav button {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 3px 8px rgba(144, 169, 85, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-nav button:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-light) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(144, 169, 85, 0.4);
+}
+
+.calendar-nav button:active {
+  transform: translateY(0);
+}
+
+.calendar-nav button::before {
+  content: '';
+  display: inline-block;
+}
+
+.calendar-nav button:first-child::before {
+  content: '←';
+  font-size: 18px;
+}
+
+.calendar-nav button:last-child::before {
+  content: '→';
+  font-size: 18px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.calendar-day-header {
+  font-weight: bold;
+  padding: 10px;
+  color: var(--green-dark);
+}
+
+.calendar-day {
+  min-height: 100px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+  border: 2px solid var(--green-light);
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(144, 169, 85, 0.1);
+}
+
+.calendar-day:hover {
+  transform: translateY(-3px);
+  border-color: var(--green-mid);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ea 100%);
+  box-shadow: 0 6px 12px rgba(144, 169, 85, 0.2);
+}
+
+.calendar-day-number {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.today {
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-mid) 100%) !important;
+  border: 3px solid var(--green-dark) !important;
+  box-shadow: 0 4px 12px rgba(144, 169, 85, 0.3) !important;
+}
+
+.today .calendar-day-number {
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.medicine-tag {
+  background: var(--green-dark);
+  color: white;
+  padding: 4px 6px;
+  margin-top: 5px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: block;
+  font-weight: 500;
+}
+
+/* ============================= */
+/* Add Schedule Form */
+/* ============================= */
+.add-schedule-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ea 100%);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(144, 169, 85, 0.15);
+  border: 2px solid var(--green-light);
+}
+
+.add-schedule-container h2 {
+  text-align: center;
+  color: var(--green-dark);
+  margin-bottom: 25px;
+}
+
+.add-schedule-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.add-schedule-container input[type="text"],
+.add-schedule-container input[type="datetime-local"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.add-schedule-container input[type="text"]:focus,
+.add-schedule-container input[type="datetime-local"]:focus {
+  border-color: var(--green-mid);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(173, 193, 120, 0.15);
+}
+
+.add-schedule-container button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-schedule-container button[type="submit"]:hover {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-dark) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.add-schedule-container small {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.calendar-add-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* ============================= */
+/* Responsive */
 /* ============================= */
 @media (max-width: 900px) {
   .profile-top {
@@ -269,166 +533,4 @@ footer {
     width: 40px;
     margin-right: 6px;
   }
-}
-
-      /* --Calendar Styling -- */
-      .calendar-container {
-        width: 90%;
-        max-width: 900px;
-        margin: 40px auto;
-        background: #ffffff;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .calendar-header h2 {
-        margin: 0;
-        font-size: 24px;
-        color: #0d3b66;
-    }
-
-    .calendar-nav button {
-        background: #0d3b66;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 8px;
-        color: white;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    .calendar-nav button:hover {
-        background: #12508a;
-    }
-
-    .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 10px;
-        text-align: center;
-    }
-
-    .calendar-day-header {
-        font-weight: bold;
-        padding: 10px;
-        color: #0d3b66;
-    }
-
-    .calendar-day {
-        min-height: 100px;
-        background: #f6f9fc;
-        border-radius: 10px;
-        padding: 8px;
-        position: relative;
-        border: 1px solid #d3dce6;
-        text-align: left;
-        transition: transform 0.1s;
-    }
-
-    .calendar-day:hover {
-        transform: scale(1.02);
-    }
-
-    .calendar-day-number {
-        font-weight: bold;
-        color: #0d3b66;
-    }
-
-    .today {
-        background: #e3f1ff !important;
-        border: 2px solid #0d3b66 !important;
-    }
-
-    .medicine-tag {
-        background: #0d3b66;
-        color: white;
-        padding: 4px 6px;
-        margin-top: 5px;
-        border-radius: 6px;
-        font-size: 12px;
-        display: block;
-    }
-  /*  add_schedule styles */
-
-/* Container for the form */
-.add-schedule-container {
-  max-width: 500px;
-  margin: 50px auto;
-  background-color: #f9f9f9; /* light background */
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: 'Helvetica', Arial, sans-serif;
-}
-
-/* Header */
-.add-schedule-container h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 25px;
-}
-
-/* Labels */
-.add-schedule-container label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #34495e;
-}
-
-/* Input fields */
-.add-schedule-container input[type="text"],
-.add-schedule-container input[type="datetime-local"] {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.add-schedule-container input[type="text"]:focus,
-.add-schedule-container input[type="datetime-local"]:focus {
-  border-color: #3498db;
-  outline: none;
-}
-
-/* Submit button */
-.add-schedule-container button[type="submit"] {
-  width: 100%;
-  padding: 14px;
-  background-color: #3498db;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.add-schedule-container button[type="submit"]:hover {
-  background-color: #2980b9;
-}
-
-/* Optional small text */
-.add-schedule-container small {
-  display: block;
-  margin-top: 10px;
-  color: #7f8c8d;
-  font-size: 0.85rem;
-  text-align: center;
-}
-.calendar-add-button-container {
-  text-align: center;
-  margin: 20px 0;
 }
