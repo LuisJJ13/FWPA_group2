@@ -22,7 +22,10 @@ class UserModel:
     def update_user(self, email, update_data):
         email = email.strip().lower()
         return self.collection.update_one({"email": email}, {"$set": update_data})
-
+    def delete_user(self, email):
+        email = email.strip().lower()
+        result = self.collection.delete_one({"email": email})
+        return result.deleted_count > 0
 
 # ------------------------
 # LOGIN MODEL
