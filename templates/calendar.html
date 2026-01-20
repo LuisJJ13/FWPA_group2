@@ -15,13 +15,19 @@
                     <span>MedInfo</span>
                 </a>
             </div>
+    
             <div class="profile-header">
                 <h2>My Medicine Calendar</h2>
             </div>
         </div>
     </header>
+    
+    <!-- Floating profile icon -->
+    <a href="{{ url_for('profile.profile_page') }}" id="calender_profile_icon">
+        <img src="{{ url_for('static', filename='images/Profile_icon.png') }}" alt="Profile">
+    </a>
     <div class="calendar-add-button-container">
-        <a href="{{ url_for('calendar.add_schedule') }}" class="calendar-add-button">
+        <a href="{{ url_for('calendar.add_schedule') }}" id="calender_button" class="calendar-add-button">
             + Add Medicine Schedule
         </a>
     </div>

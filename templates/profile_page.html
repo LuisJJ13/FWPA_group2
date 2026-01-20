@@ -61,19 +61,24 @@
         
             <div class="Warnings">
                 <h3>Warnings⚠️:</h3>
+                {% if warnings %}
                 <ul>
-                    <li>No warnings at this time.</li>
+                    {% for warning in warnings %}
+                    <li {% if warning.is_allergy %}style="color: #dc3545; font-weight: bold;"{% endif %}>
+                        <strong>{{ warning.medicine }}:</strong> {{ warning.text }}
+                    </li>
+                    {% endfor %}
                 </ul>
-                <small style="color: #666; font-style: italic;">Warnings will appear here based on your saved medicines and allergies</small>
+                {% else %}
+                <p style="color: #666;">No warnings at this time.</p>
+                <small style="color: #666; font-style: italic; display: block; margin-top: 10px;">Warnings will appear here based on your saved medicines and allergies</small>
+                {% endif %}
             </div>
         </div>
         
         <div class="Calendar" onclick="location.href='/calendar';" style="cursor: pointer;">  
-            <h3>Medicine Schedule🗓️:</h3>
-            <ul>
-                <li>No scheduled medicines yet.</li>
-            </ul>
-            <small style="color: #666; font-style: italic;">You can set reminders for your medicines here (coming soon!)</small>
+            <h3>Medicine Schedule</h3>
+            <p style="color: rgba(255, 255, 255, 0.9); margin: 15px 0;">Click to view your full calendar and manage reminders</p>
         </div>
         <script src="static/js/profile_page.js"></script>
     </body>
